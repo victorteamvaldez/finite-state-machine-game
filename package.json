@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "parcel src/index.html",
         "start": "parcel src/index.html",
-        "predeploy": "rm -rf dist && parcel build index.html --public-url finite-state-machine-game",
+        "predeploy": "rm -rf dist && parcel build index.html --public-url /finite-state-machine-game/src",
         "deploy": "gh-pages -d dist"
     },
     "keywords": [],
