@@ -1,4 +1,10 @@
-import { modFox, modScene, togglePoopBag, writeModal } from "./ui";
+import {
+    modFox,
+    modScene,
+    togglePoopBag,
+    writeModal,
+    scoreRefresh,
+} from "./ui";
 import {
     RAIN_CHANCE,
     SCENES,
@@ -19,6 +25,7 @@ const gameState = {
     timeToStartCelebrating: -1,
     timeToEndCelebrating: -1,
     poopTime: -1,
+    score: 0,
     tick() {
         this.clock++;
         console.log("clock", this.clock);
@@ -48,6 +55,7 @@ const gameState = {
         modFox("egg");
         modScene("day");
         writeModal();
+        scoreRefresh(this.score);
     },
     wake() {
         console.log("awoken");
@@ -86,6 +94,7 @@ const gameState = {
         this.poopTime = -1;
         this.timeToEndCelebrating = -1;
         this.timeToStartCelebrating = -1;
+        this.score = 0;
     },
     die() {
         this.current = "DEAD";
@@ -100,6 +109,8 @@ const gameState = {
         this.timeToStartCelebrating = -1;
         this.timeToEndCelebrating = this.clock + 2;
         this.determineState();
+        this.score += 100;
+        scoreRefresh(this.score);
     },
     determineState() {
         if (this.current === "IDLING") {
@@ -148,7 +159,7 @@ const gameState = {
         this.determineState();
     },
     cleanUpPoop() {
-        if (!this.current == "POOPING") {
+        if (!(this.current == "POOPING")) {
             return;
         }
         this.dieTime = -1;

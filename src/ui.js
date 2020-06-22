@@ -15,3 +15,7 @@ export const writeModal = function writeModal(text = "") {
         ".modal"
     ).innerHTML = `<div class="modal-inner">${text}</div>`;
 };
+
+export const scoreRefresh = function scoreRefresh(score) {
+    document.querySelector("#current-score").textContent = score;
+};

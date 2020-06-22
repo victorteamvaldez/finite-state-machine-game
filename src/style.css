@@ -149,3 +149,35 @@ body {
     top: 380px;
     left: 243px;
 }
+
+/* Modal Instructions */
+
+.modal-instructions {
+    position: absolute;
+    top: 60px;
+    right: -380px;
+    background-color: purple;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    width: 350px;
+}
+
+.modal-instructions li {
+    padding-bottom: 10px;
+}
+
+/* Score */
+
+.score {
+    position: absolute;
+    top: 60px;
+    left: -300px;
+    background-color: white;
+    border-radius: 12px;
+    color: purple;
+    padding: 20px;
+    font-size: 30px;
+    width: 270px;
+    text-align: center;
+}

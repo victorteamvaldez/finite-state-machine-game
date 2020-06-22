@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.writeModal = exports.togglePoopBag = exports.modScene = exports.modFox = void 0;
+exports.scoreRefresh = exports.writeModal = exports.togglePoopBag = exports.modScene = exports.modFox = void 0;
 
 var modFox = function modFox(state) {
   document.querySelector(".fox").className = "fox fox-".concat(state);
@@ -149,6 +149,12 @@ var writeModal = function writeModal() {
 };
 
 exports.writeModal = writeModal;
+
+var scoreRefresh = function scoreRefresh(score) {
+  document.querySelector("#current-score").textContent = score;
+};
+
+exports.scoreRefresh = scoreRefresh;
 },{}],"constants.js":[function(require,module,exports) {
 "use strict";
 
@@ -208,6 +214,7 @@ var gameState = {
   timeToStartCelebrating: -1,
   timeToEndCelebrating: -1,
   poopTime: -1,
+  score: 0,
   tick: function tick() {
     this.clock++;
     console.log("clock", this.clock);
@@ -237,6 +244,7 @@ var gameState = {
     (0, _ui.modFox)("egg");
     (0, _ui.modScene)("day");
     (0, _ui.writeModal)();
+    (0, _ui.scoreRefresh)(this.score);
   },
   wake: function wake() {
     console.log("awoken");
@@ -275,6 +283,7 @@ var gameState = {
     this.poopTime = -1;
     this.timeToEndCelebrating = -1;
     this.timeToStartCelebrating = -1;
+    this.score = 0;
   },
   die: function die() {
     this.current = "DEAD";
@@ -289,6 +298,8 @@ var gameState = {
     this.timeToStartCelebrating = -1;
     this.timeToEndCelebrating = this.clock + 2;
     this.determineState();
+    this.score += 100;
+    (0, _ui.scoreRefresh)(this.score);
   },
   determineState: function determineState() {
     if (this.current === "IDLING") {
@@ -335,7 +346,7 @@ var gameState = {
     this.determineState();
   },
   cleanUpPoop: function cleanUpPoop() {
-    if (!this.current == "POOPING") {
+    if (!(this.current == "POOPING")) {
       return;
     }
 
@@ -460,7 +471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64470" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50592" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
